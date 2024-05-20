@@ -10,6 +10,7 @@ const Game = ({ lang }) => {
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(60);
   const [dictionary, setDictionary] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);  //for Time's Up Popup
 
   useEffect(() => {
     fetch(`/dictionaries/${lang}.json`)
@@ -22,6 +23,12 @@ const Game = ({ lang }) => {
         setLetters(randomLetters);
       });
   }, [lang]);
+
+  useEffect(() => {  //for Time's Up Popup
+    if (time === 0) {
+      setShowPopup(true);
+    }
+  }, [time]);
 
   const handleSubmit = () => {
     if (dictionary.includes(inputWord) && !correctWords.includes(inputWord)) {
@@ -66,6 +73,21 @@ const Game = ({ lang }) => {
       {/* Timer and Score starts */}
       <Timer time={time} setTime={setTime} lang={lang} />
       <Score score={score} lang={lang} />
+
+      {/* Time's Up Popup starts */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-10 rounded shadow-lg text-center">
+            <h2 className="text-2xl font-bold mb-4">{lang === 'en' ? 'Time\'s Up!' : 'Süren Bitti'}</h2>
+            <p className="text-lg mb-4">{lang === 'en' ? 'Your final score is' : 'Skorun'}: {score}</p>
+            <button onClick={() => setShowPopup(false)} className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded">
+              {lang === 'en' ? 'Close' : 'Kapat'}
+            </button>
+          </div>
+        </div>
+      )}
+      {/* Time's Up Popup ends */}
+
     </div>
   );
 };
