@@ -64,8 +64,8 @@ const Game = ({ lang }) => {
       </button>
 
       {/* Timer and Score starts */}
-      <Timer time={time} setTime={setTime} />
-      <Score score={score} />
+      <Timer time={time} setTime={setTime} lang={lang} />
+      <Score score={score} lang={lang} />
     </div>
   );
 };
