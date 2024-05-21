@@ -35,10 +35,19 @@ body {
 }
 
 /* Hexagon Letters starts */
+.hexagon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 310px;
+  padding: 10px; /* Kenar boşluk */
+}
+
 .hexagon {
-  position: relative;
-  width: 70px; 
-  height: 70px;
+  position:static;
+  width: 65px; 
+  height: 65px;
   background-color: white;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   display: flex;

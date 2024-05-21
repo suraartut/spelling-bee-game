@@ -46,8 +46,8 @@ const Game = ({ lang }) => {
       <h1 className="text-4xl font-bold mb-8">{lang === 'en' ? 'Spelling Bee Game' : 'Heceleme Oyunu'}</h1>
 
       {/* Hexagon Letters starts */}
-      <div className="hexagon-container flex justify-center mb-6">
-        <div className="grid grid-cols-7 gap-2">
+      <div className="flex justify-center mb-6">
+        <div className="grid grid-cols-7 gap-2 hexagon-container">
           {letters.map((letter, index) => (
             <div key={index} className="hexagon">
               <span className="text-3xl">{letter}</span>
